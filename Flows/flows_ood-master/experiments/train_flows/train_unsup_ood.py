@@ -137,7 +137,7 @@ parser.add_argument('--batch_size', default=32, type=int, help='Batch size')
 parser.add_argument('--gpu_ids', default='[0]', type=eval, help='IDs of GPUs to use')
 parser.add_argument('--lr', default=1e-3, type=float, help='Learning rate')
 parser.add_argument('--max_grad_norm', type=float, default=100., help='Max gradient norm for clipping')
-parser.add_argument('--num_epochs', default=100, type=int, help='Number of epochs to train')
+parser.add_argument('--num_epochs', default=80, type=int, help='Number of epochs to train')
 parser.add_argument('--num_samples', default=20, type=int, help='Number of samples at test time')
 parser.add_argument('--num_workers', default=4, type=int, help='Number of data loader threads')
 parser.add_argument('--resume',  type=str, default=None, metavar='PATH', help='path to ckpt')
@@ -226,8 +226,9 @@ else:
 #     raise ValueError("Unsupported dataset "+args.dataset)
 
     if args.dataset == 'TinyImageNet':
-        img_shape = (3, 64, 64)
+        img_shape = (3, 32, 32)
         transform_train = transforms.Compose([
+                transforms.Resize((32, 32)),
                 transforms.RandomHorizontalFlip(),
                 transforms.ToTensor(),
             ])

@@ -21,7 +21,8 @@ def make_sup_data_loaders(
         val_size=5000, 
         shuffle_train=True,
         dataset="cifar10",
-        only_class=None
+        only_class=None,
+        create_ood_split = False
         ):
 
     
@@ -126,7 +127,7 @@ def make_sup_data_loaders(
         if dataset == "tinyimagenet":
             train_dataset = datasets.ImageFolder(os.path.join(path, 'train'), transform = transform_train)
 
-
+            transform_test = transforms.Compose([transforms.Resize((32, 32)), transforms.ToTensor()])
             test_dataset = datasets.ImageFolder(os.path.join(path, 'test'), transform = transform_test)
 
 
@@ -140,11 +141,21 @@ def make_sup_data_loaders(
             return train_loader, test_loader, 200
 
         elif dataset == "imagenet-o":
-            transform_test = transforms.Compose([transforms.Resize((64, 64)), transforms.ToTensor()])
-            ood_dataset = datasets.ImageFolder(path, transform=transform_test)
-            ood_dataset_loader = DataLoader(ood_dataset, batch_size, shuffle=False,
-                                                     num_workers=num_workers, pin_memory=True)
-            return None, ood_dataset_loader, None
+            if create_ood_split:
+                transform_test = transforms.Compose([transforms.Resize((32, 32)), transforms.ToTensor()])
+                ood_dataset_train = datasets.ImageFolder(os.path.join(path, 'train'), transform=transform_test)
+                ood_dataset_train_loader = DataLoader(ood_dataset_train, batch_size, shuffle=shuffle_train,
+                                                         num_workers=num_workers, pin_memory=True)
+                ood_dataset_test = datasets.ImageFolder(os.path.join(path, 'test'), transform=transform_test)
+                ood_dataset_test_loader = DataLoader(ood_dataset_test, batch_size, shuffle=False,
+                                                         num_workers=num_workers, pin_memory=True)
+                return ood_dataset_train_loader, ood_dataset_test_loader, None
+            else:
+                transform_test = transforms.Compose([transforms.Resize((32, 32)), transforms.ToTensor()])
+                ood_dataset = datasets.ImageFolder(path, transform=transform_test)
+                ood_dataset_loader = DataLoader(ood_dataset, batch_size, shuffle=False,
+                                                         num_workers=num_workers, pin_memory=True)
+                return None, ood_dataset_loader, None
 
         elif dataset == "transfertinyimagenet":
             ds = TransferTinyImageNet
