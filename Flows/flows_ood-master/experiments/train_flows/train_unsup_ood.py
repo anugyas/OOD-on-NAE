@@ -150,7 +150,7 @@ parser.add_argument('--lr_anneal', action='store_true')
 
 
 #parser.add_argument('--flow', choices=['RealNVP', 'Glow', 'RealNVPNewMask', 'RealNVPNewMask2', 'RealNVPSmall'], default="RealNVP", help='Flow model to use (default: RealNVP)')
-parser.add_argument('--flow', type=str, default="RealNVP", help='Flow model to use (default: RealNVP)')
+parser.add_argument('--flow', type=str, default="RealNVPCycleMask", help='Flow model to use (default: RealNVP)')
 parser.add_argument('--num_blocks', default=8, type=int, help='number of blocks in ResNet')
 parser.add_argument('--num_scales', default=2, type=int, help='number of scales in multi-layer architecture')
 parser.add_argument('--num_mid_channels', default=64, type=int, help='number of channels in coupling layer parametrizing network')
