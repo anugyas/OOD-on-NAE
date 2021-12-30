@@ -1,0 +1,14 @@
+/scratch/as14770/conda/envs/hw2_dqn/lib/python3.7/site-packages/torch/optim/lr_scheduler.py:136: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  "https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate", UserWarning)
+Traceback (most recent call last):
+  File "/scratch/as14770/conda/envs/hw2_dqn/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
+    send_bytes(obj)
+  File "/scratch/as14770/conda/envs/hw2_dqn/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/scratch/as14770/conda/envs/hw2_dqn/lib/python3.7/multiprocessing/connection.py", line 404, in _send_bytes
+    self._send(header + buf)
+  File "/scratch/as14770/conda/envs/hw2_dqn/lib/python3.7/multiprocessing/connection.py", line 368, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+slurmstepd: error: *** JOB 13103160 ON gr004 CANCELLED AT 2021-12-16T15:49:19 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 13103172 ON gr053 CANCELLED AT 2021-12-16T15:51:19 DUE TO TIME LIMIT ***
