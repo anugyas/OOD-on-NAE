@@ -2,7 +2,7 @@
 
 Research project on out of distribution detection for the Computer Vision course by Prof. Rob Fergus (CSCI-GA 2271)
 
-**Paper out of arXiv** - https://arxiv.org/abs/2201.09352 
+**Paper out on arXiv** - https://arxiv.org/abs/2201.09352 
 
 ## Code taken and adapted from -
 1. https://github.com/hendrycks/natural-adv-examples
